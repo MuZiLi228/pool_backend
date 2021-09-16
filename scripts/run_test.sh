@@ -1,0 +1,1 @@
+go test -v -short $(go list ./...) | grep -v "no test"

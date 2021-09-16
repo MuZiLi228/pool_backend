@@ -1,0 +1,12 @@
+logs/
+coverage/
+.idea/
+.DS_Store
+.gitignore
+.git/
+test/
+http/
+.vscode/
+build/
+scripts/
+

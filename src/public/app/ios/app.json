@@ -1,0 +1,14 @@
+{
+android: {
+downloadUrl: "http://anyawallet.svconcloud.com/down/",
+versionName: "1.0.3",
+versionCode: 1,
+versionDesc: "1.新增版本更新接口"
+},
+ios: {
+downloadUrl: "http://anyawallet.svconcloud.com/down",
+versionName: "1.0.3",
+versionCode: 1,
+versionDesc: "1.新增版本更新接口"
+}
+}

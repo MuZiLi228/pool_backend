@@ -1,0 +1,36 @@
+"jwt": 
+  "expireduration": 2
+  "secret": "i1ydX9RtHyuJTrw7frcu"
+"pg": 
+  "base": 
+    "connmaxlifetime": 60
+    "maxidleconn": 60
+    "maxopenconn": 10
+  "read": 
+    "host": "127.0.0.1"
+    "name": "fil_pool"
+    "pass": "fUz3iBspp7tX8oNRy2fs"
+    "port": "5432"
+    "user": "fil_pool"
+  "write": 
+    "host": "127.0.0.1"
+    "name": "fil_pool"
+    "pass": "fUz3iBspp7tX8oNRy2fs"
+    "port": "5432"
+    "user": "fil_pool"
+"redis": 
+  "addr": "127.0.0.1:6379"
+  "db": "9"
+  "maxretries": 3
+  "minidleconns": 5
+  "pass": "PAM8vaag1vTr"
+  "poolsize": 10
+"secretkey": 
+  "aeskey": "x7rGlXIs2j19uC4c6RvNmoZbwkQfKSHD"
+  "iv": "5ZgcWJxDvN71f3o6"
+"sms":
+  "regionId": "ap-northeast-1"
+  "accessKeyId": "LTAI4FyvSPqcoFsZp4RdFzJ4"
+  "accessKeySecret": "jaP2j3QfNWFTeiAsMVwxBHuYCH9n3X"
+  "signName": "悦智"
+  "templateCode": "SMS_139232384"

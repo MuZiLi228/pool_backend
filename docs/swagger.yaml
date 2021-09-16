@@ -1,0 +1,1059 @@
+definitions:
+  request.ApplicationWithdrawal:
+    properties:
+      amount:
+        type: number
+      content:
+        type: string
+      hash:
+        type: string
+      shareholder_id:
+        type: string
+      with_log:
+        type: string
+      withdrawal_pwd:
+        type: string
+    required:
+    - amount
+    - hash
+    - shareholder_id
+    - withdrawal_pwd
+    type: object
+  request.CreateFilPool:
+    properties:
+      effective_computing_power:
+        description: '"有效算力"'
+        type: string
+      miner:
+        description: '"矿工"'
+        type: string
+      miner_available_balance:
+        description: '"可用余额"'
+        type: number
+      miner_balance:
+        description: '"账户余额"'
+        type: number
+      name:
+        description: '"矿池名称"'
+        type: string
+      node_id:
+        description: '"节点id"'
+        type: string
+      original_computing_power:
+        description: '"原值算力"'
+        type: string
+      sector_size:
+        description: '"扇区大小"'
+        type: number
+    required:
+    - effective_computing_power
+    - miner
+    - miner_available_balance
+    - miner_balance
+    - name
+    - node_id
+    - original_computing_power
+    - sector_size
+    type: object
+  request.CreateFilPoolDailyIncome:
+    properties:
+      assigned_val:
+        description: 分配值
+        type: number
+      fil_pool_id:
+        description: 矿池id
+        type: string
+      freed:
+        description: 有效算力
+        type: number
+      last_time_val:
+        description: 上次值
+        type: number
+      today_val:
+        description: 本日值
+        type: number
+    required:
+    - assigned_val
+    - fil_pool_id
+    - freed
+    - last_time_val
+    - today_val
+    type: object
+  request.CreateFilPoolRatio:
+    properties:
+      fil_pool_id:
+        type: string
+      list:
+        items:
+          $ref: '#/definitions/request.ShareholerShareList'
+        type: array
+    required:
+    - fil_pool_id
+    - list
+    type: object
+  request.Detail:
+    properties:
+      id:
+        type: string
+    required:
+    - id
+    type: object
+  request.PwdLogin:
+    properties:
+      mobile:
+        type: string
+      pwd:
+        type: string
+    required:
+    - mobile
+    - pwd
+    type: object
+  request.RegisterAccount:
+    properties:
+      is_enable:
+        description: 是否开启
+        type: boolean
+      mobile:
+        description: 手机号码
+        type: string
+      pwd:
+        description: 密码
+        type: string
+      recommend_code:
+        description: 推荐码 没有，可不填
+        type: string
+      sms_code:
+        description: 短信验证码
+        type: string
+    required:
+    - is_enable
+    - mobile
+    - pwd
+    - sms_code
+    type: object
+  request.SetEnable:
+    properties:
+      id:
+        type: string
+      is_enable:
+        type: boolean
+      shareholder_id:
+        type: string
+    required:
+    - id
+    - is_enable
+    - shareholder_id
+    type: object
+  request.SetWithdrawalPwd:
+    properties:
+      login_pwd:
+        type: string
+      shareholder_id:
+        type: string
+      withdrawal_pwd:
+        type: string
+    required:
+    - login_pwd
+    - shareholder_id
+    - withdrawal_pwd
+    type: object
+  request.ShareholerShareList:
+    properties:
+      proportion_of_shares:
+        type: integer
+      shareholder_id:
+        type: string
+    required:
+    - proportion_of_shares
+    - shareholder_id
+    type: object
+  request.SmsSend:
+    properties:
+      mobile:
+        type: string
+    required:
+    - mobile
+    type: object
+  request.UpadteFilPool:
+    properties:
+      effective_computing_power:
+        description: '"有效算力"'
+        type: string
+      id:
+        description: '"矿池名称"'
+        type: string
+      miner:
+        description: '"矿工"'
+        type: string
+      miner_available_balance:
+        description: '"可用余额"'
+        type: number
+      miner_balance:
+        description: '"账户余额"'
+        type: number
+      name:
+        description: '"矿池名称"'
+        type: string
+      node_id:
+        description: '"节点id"'
+        type: string
+      original_computing_power:
+        description: '"原值算力"'
+        type: string
+      sector_size:
+        description: '"扇区大小"'
+        type: number
+    required:
+    - effective_computing_power
+    - id
+    - miner
+    - miner_available_balance
+    - miner_balance
+    - name
+    - node_id
+    - original_computing_power
+    - sector_size
+    type: object
+  request.UpdatePercentShareholderID:
+    properties:
+      percent_five_shareholder_id:
+        type: string
+      percent_three_shareholder_id:
+        type: string
+      shareholder_id:
+        type: string
+    required:
+    - shareholder_id
+    type: object
+  request.WithdrawalReject:
+    properties:
+      content:
+        type: string
+      id:
+        type: string
+    required:
+    - content
+    - id
+    type: object
+  response.Resp:
+    properties:
+      code:
+        type: string
+      data:
+        type: object
+      msg:
+        type: string
+    type: object
+host: 192.168.1.163:7001
+info:
+  contact: {}
+  license:
+    name: MIT
+    url: https://www.baidu.com
+  title: swagger 接口文档
+  version: "2.0"
+paths:
+  /get_id:
+    get:
+      consumes:
+      - application/json
+      description: 获取主键id
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: 获取主键id
+      tags:
+      - common
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 服务是否启动正常检查
+      parameters:
+      - description: 用户名
+        in: query
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ""
+      summary: 健康检查接口
+      tags:
+      - common
+  /v1/account/list:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东数据列表分页 后台用户管理
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东数据列表分页
+      tags:
+      - 股东
+  /v1/account/pwd_login:
+    post:
+      consumes:
+      - application/json
+      description: 账号密码登录
+      parameters:
+      - description: 账号密码登录 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.PwdLogin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 账号密码登录
+      tags:
+      - 股东
+  /v1/account/register:
+    post:
+      consumes:
+      - application/json
+      description: 股东账号注册
+      parameters:
+      - description: 股东手机验证码登录 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.RegisterAccount'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 股东账号注册
+      tags:
+      - 股东
+  /v1/app:
+    get:
+      consumes:
+      - application/json
+      description: 获取app版本信息
+      parameters:
+      - description: ios|android
+        in: query
+        name: type
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取app版本信息
+      tags:
+      - app
+  /v1/app/down/{type}/{name}:
+    get:
+      consumes:
+      - application/json
+      description: app下载
+      parameters:
+      - description: ios|android
+        in: path
+        name: type
+        type: string
+      - description: apk name
+        in: path
+        name: name
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: app下载链接
+      tags:
+      - app
+  /v1/app/uploads:
+    post:
+      consumes:
+      - application/json
+      description: 更新app json版本信息,apk暂时存放服务器
+      parameters:
+      - description: ios|android
+        in: header
+        name: type
+        type: string
+      - description: file 上传文件
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 更新app apk暂时存放服务器
+      tags:
+      - app
+  /v1/fil_pool/create:
+    post:
+      consumes:
+      - application/json
+      description: 创建矿池
+      parameters:
+      - description: 创建矿池 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.CreateFilPool'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 创建矿池
+      tags:
+      - 矿池
+  /v1/fil_pool/detail:
+    get:
+      consumes:
+      - application/json
+      description: 获取矿池数据详情
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取矿池数据详情
+      tags:
+      - 矿池
+  /v1/fil_pool/list:
+    get:
+      consumes:
+      - application/json
+      description: 获取矿池数据列表
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取矿池数据列表
+      tags:
+      - 矿池
+  /v1/fil_pool/update:
+    post:
+      consumes:
+      - application/json
+      description: 更新矿池
+      parameters:
+      - description: 更新矿池 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.UpadteFilPool'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 更新矿池
+      tags:
+      - 矿池
+  /v1/fil_pool_daily/create:
+    post:
+      consumes:
+      - application/json
+      description: 创建每日矿池收益
+      parameters:
+      - description: 创建每日矿池收益 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.CreateFilPoolDailyIncome'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 创建每日矿池收益
+      tags:
+      - 矿池
+  /v1/fil_pool_daily/detail:
+    get:
+      consumes:
+      - application/json
+      description: 获取每日矿池收益数据详情
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取每日矿池收益数据详情
+      tags:
+      - 矿池
+  /v1/fil_pool_daily/list:
+    get:
+      consumes:
+      - application/json
+      description: 获取每日矿池收益数据列表
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取每日矿池收益数据列表
+      tags:
+      - 矿池
+  /v1/fil_pool_ratio/create:
+    post:
+      consumes:
+      - application/json
+      description: 批量创建股东矿池比例
+      parameters:
+      - description: 创建股东矿池比例 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.CreateFilPoolRatio'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 批量创建股东矿池比例
+      tags:
+      - 股东矿池比例
+  /v1/fil_pool_ratio/detail:
+    get:
+      consumes:
+      - application/json
+      description: 根据矿池id获取股东矿池列表
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 根据矿池id获取股东矿池列表
+      tags:
+      - 股东矿池比例
+  /v1/fil_pool_ratio/list:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东矿池比例数据列表
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东矿池比例数据列表
+      tags:
+      - 股东矿池比例
+  /v1/news/daily_news:
+    get:
+      consumes:
+      - application/json
+      description: 24小说交易排行数据
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 24小说交易排行数据
+      tags:
+      - 资讯模块
+  /v1/news/futures_stat:
+    get:
+      consumes:
+      - application/json
+      description: 24小时爆仓统计
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 24小时爆仓统计
+      tags:
+      - 资讯模块
+  /v1/news/futuresmarket_bitcoin:
+    get:
+      consumes:
+      - application/json
+      description: 24小时多空比
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 24小时多空比
+      tags:
+      - 资讯模块
+  /v1/news/futuresmarket_exchange:
+    get:
+      consumes:
+      - application/json
+      description: 交易所期货数据
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 交易所期货数据
+      tags:
+      - 资讯模块
+  /v1/news/web_exchange:
+    get:
+      consumes:
+      - application/json
+      description: 获取交易所排行数据
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取交易所排行数据
+      tags:
+      - 资讯模块
+  /v1/shareholder/detail:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东信息
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东信息
+      tags:
+      - 股东
+  /v1/shareholder/income_list:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东每日收益数据列表分页 后台用户管理
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东每日收益数据列表分页
+      tags:
+      - 股东
+  /v1/shareholder/info:
+    get:
+      consumes:
+      - application/json
+      description: 获取收益统计数据 app
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取收益统计数据
+      tags:
+      - 股东
+  /v1/shareholder/list:
+    get:
+      consumes:
+      - application/json
+      description: 矿池分配股东时,需要有股东列表去选择
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东数据列表
+      tags:
+      - 股东
+  /v1/shareholder/set_enable:
+    post:
+      consumes:
+      - application/json
+      description: 是否禁用用户 后台用户管理
+      parameters:
+      - description: 是否禁用用户 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.SetEnable'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 是否禁用用户
+      tags:
+      - 股东
+  /v1/shareholder/set_pwd:
+    post:
+      consumes:
+      - application/json
+      description: 股东设置提现密码 需要提供登录密码 后面可迭代加上短信验证码
+      parameters:
+      - description: 股东设置提现密码 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.SetWithdrawalPwd'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 股东设置提现密码
+      tags:
+      - 股东
+  /v1/shareholder/subordinate_list:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东下级列表
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东下级列表
+      tags:
+      - 股东
+  /v1/shareholder/update_percent:
+    post:
+      consumes:
+      - application/json
+      description: 股东更新再分配占比例
+      parameters:
+      - description: 股东更新再分配占比例 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.UpdatePercentShareholderID'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 股东更新再分配占比例
+      tags:
+      - 股东
+  /v1/sms/send:
+    post:
+      consumes:
+      - application/json
+      description: 发送短信验证码
+      parameters:
+      - description: 发送短信验证码 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.SmsSend'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 发送短信验证码
+      tags:
+      - common
+  /v1/withdrawal/account_list:
+    get:
+      consumes:
+      - application/json
+      description: 获取股东提现申请列表
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取股东提现申请列表
+      tags:
+      - 提现
+  /v1/withdrawal/application:
+    post:
+      consumes:
+      - application/json
+      description: 创建提现申请
+      parameters:
+      - description: 创建提现申请 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.ApplicationWithdrawal'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 创建提现申请
+      tags:
+      - 提现
+  /v1/withdrawal/detail:
+    get:
+      consumes:
+      - application/json
+      description: 获取提现申请详情
+      parameters:
+      - in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取提现申请详情
+      tags:
+      - 提现
+  /v1/withdrawal/list:
+    get:
+      consumes:
+      - application/json
+      description: 获取提现申请数据列表
+      parameters:
+      - description: id 可选参数
+        in: query
+        name: id
+        type: string
+      - description: 获取当页条数
+        in: query
+        name: num
+        required: true
+        type: integer
+      - description: 当前页数
+        in: query
+        name: page
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 获取提现申请数据列表
+      tags:
+      - 提现
+  /v1/withdrawal/pass:
+    post:
+      consumes:
+      - application/json
+      description: 后台通过提现申请 1、申请状态改为通过 2、需要扣除对应股东余额
+      parameters:
+      - description: 后台通过提现申请 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.Detail'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 后台通过提现申请
+      tags:
+      - 提现
+  /v1/withdrawal/reject:
+    post:
+      consumes:
+      - application/json
+      description: 后台驳回提现申请 1、申请状态改为驳回 2、需要添加驳回原因
+      parameters:
+      - description: 后台驳回提现申请 需要的参数
+        in: body
+        name: param
+        schema:
+          $ref: '#/definitions/request.WithdrawalReject'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.Resp'
+      summary: 后台驳回提现申请
+      tags:
+      - 提现
+swagger: "2.0"
